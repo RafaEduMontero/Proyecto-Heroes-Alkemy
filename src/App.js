@@ -1,8 +1,10 @@
+import Routes from "./routes/routes";
+import './styles/style.css'
+
 function App() {
+
   return (
-    <div className="App">
-      <h1>Heroes Alkemy</h1>
-    </div>
+      <Routes/>
   );
 }
 
