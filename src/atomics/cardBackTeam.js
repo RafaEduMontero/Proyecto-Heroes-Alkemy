@@ -1,3 +1,4 @@
+import ModalCard from '../components/modalCard';
 import ButtonCard from './buttonCard';
 const CardBackTeam = ({heroe,img,img1,paquete}) => {
     console.log(heroe)
@@ -12,7 +13,7 @@ const CardBackTeam = ({heroe,img,img1,paquete}) => {
             <p>{`Fuerza: ${strength}`}</p>
             <div className="row">
                 <div className="col-6">
-                    <ButtonCard img={img} color="info" />
+                    <ModalCard heroe={heroe} img={img} color="info"/>
                 </div>
                 <div className="col-6">
                     <ButtonCard img={img1} color="danger" onClick={() => mostrarAlert(name,id,paquete,url)}/>

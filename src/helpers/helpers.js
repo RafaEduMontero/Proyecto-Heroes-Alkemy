@@ -33,15 +33,39 @@ const helpers = {
         }
     },
     addHeroe: (id, paquete) => {
-        const { team, setTeam, heroes,setTeamValidate} = paquete;
+        const { team, setTeam, heroes,setTeamValidate,contadorBad,setContadorBad,contadorGood,setContadorGood} = paquete;
         const heroe = heroes.filter((heroe) => heroe?.id === id)
-        setTeam([...team, ...heroe]);
-        setTeamValidate(true);
+        const {biography:{alignment}} = heroe[0];
+        if(team.length < 6){
+            if(alignment === 'good'){
+                if(contadorGood < 3){
+                    setContadorGood(contadorGood + 1);
+                    setTeam([...team, ...heroe]);
+                    console.log(contadorGood)
+                }
+            }else{
+                if(contadorBad < 3){
+                    setContadorBad(contadorBad + 1);
+                    setTeam([...team, ...heroe]);
+                    console.log(contadorBad)
+                }
+            }
+            
+            setTeamValidate(true);
+        }
     },
     delHeroe: (id, paquete) => {
-        const { team, setTeam } = paquete;
-        const heroe = team.filter(heroe => heroe.id !== id);
-        setTeam(heroe);
+        const { team, setTeam,contadorBad,setContadorBad,contadorGood,setContadorGood } = paquete;
+        const heroe = team.find(heroe => heroe.id === id);
+        console.log(heroe);
+        const {biography:{alignment}} = heroe;
+        if(alignment === 'good'){
+            setContadorGood(contadorGood - 1);
+        }else{
+            setContadorBad(contadorBad - 1);
+        }
+        const heroes = team.filter(heroe => heroe.id !== id);
+        setTeam(heroes);
     },
     mostrarAlert: (nombre,id,paquete,url) =>{
         const {delHeroe} = helpers;
@@ -64,7 +88,10 @@ const helpers = {
                 })
             }
         })
-    }
+    },
+    // login: (email,password) =>{
+    //     const TokenLogin = 
+    // }
 }
 
 export default helpers;
