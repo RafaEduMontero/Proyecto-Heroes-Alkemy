@@ -16,7 +16,7 @@ const CardBack = ({heroe,img,img1,paquete}) => {
                     <ModalCard heroe={heroe} img={img} color="info"/>
                 </div>
                 <div className="col-6">
-                    {alignment === 'good' && contadorGood < 3 || alignment === 'bad' && contadorBad < 3 ? <ButtonCard img={img1} color="success" onClick={() => addHeroe(id,paquete)}/> : (alignment === 'good') ? <PopoverCard body="Ya agregaste todos tus heroes buenos a tu Team"/> : <PopoverCard body="Ya agregaste todos tus heroes malos a tu Team"/>}
+                    {alignment === 'good' && contadorGood < 3 || alignment === 'bad' && contadorBad < 3 ? <ButtonCard img={img1} color="success" onClick={() => addHeroe(id,paquete)}/> : (alignment === 'good') ? <PopoverCard tipo="Héroes" body="Ya agregaste todos tus Héroes a tu Team"/> : <PopoverCard tipo="Villanos" body="Ya agregaste todos tus Villanos a tu Team"/>}
                     {/* <ButtonCard img={img1} color="success" onClick={() => addHeroe(id,paquete)}/> */}
                 </div>
             </div>

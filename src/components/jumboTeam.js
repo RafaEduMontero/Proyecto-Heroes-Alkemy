@@ -5,7 +5,7 @@ const JumboTeam = ({paquete}) => {
     const {team} = paquete;
     return (
         <div className="jumbotron container-fluid">
-            <h1 className="display-4">Éste es tu Team</h1>
+            <h1 className="display-4 text-center">Éste es tu Team</h1>
             <div className="row">
             {team.map((heroe,i) =>{
                         return(

@@ -5,6 +5,7 @@ let timeOutID;
 
 const helpers = {
     buscarHeroes : async({entrada},setHeroes,setValidate,setNoEncontrado) =>{
+        setValidate(false)
         console.log(entrada)
         if (entrada !== '') {
             clearTimeout(timeOutID);
@@ -17,7 +18,6 @@ const helpers = {
                 } else {
                     setValidate(true);
                     setNoEncontrado(true);
-                    setHeroes([]);
                 }
             }, 500);
         }else{

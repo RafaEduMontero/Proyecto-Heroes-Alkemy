@@ -1,4 +1,4 @@
-import React, { useState,Fragment } from 'react'
+import React, { useState,Fragment, useEffect } from 'react'
 import InputField from '../atomics/inputField';
 import helpers from '../helpers/helpers';
 import CardBusqueda from '../components/cardBuqueda';
@@ -6,6 +6,8 @@ import Paginate from '../components/paginate';
 import CardTeam from '../components/cardTeam';
 import JumboTeam from '../components/jumboTeam';
 import ModalCard from '../components/modalCard';
+import { Spinner } from 'reactstrap';
+import Jumbotrom from '../atomics/jumbotrom';
 
 const Home = () => {
     const [entrada,setEntrada] = useState('');
@@ -43,13 +45,14 @@ const Home = () => {
         setCurrentPage(selected);
     }
 
+
     return (
         <Fragment>
             <div className="container-fluid fondoHome">
                 <div className="container">
                     <div className="row d-flex justify-content-center text-center mb-3 text-white">
-                        <h1>Tus Héroes al alcance de tu mano</h1>
-                        <h4 >Armá tu equipo con los héroes que desees, recuerda que solo puedes armarlo con 3 héroes buenos y 3 malos. ¡A la Carga!</h4>
+                        <h1>Tus Personajes al alcance de tu mano</h1>
+                        <h4 >Armá tu equipo con tus personajes preferidos, recuerda que solo puedes armarlo con 3 Héroes y 3 Villanos. ¡A la Carga!</h4>
                         <div className="col-6">
                             <InputField name="entrada" placeholder="Buscar Héroes" onChange={handler} onKeyUp={() => buscarHeroes(entrada, setHeroes, setValidate, setNoEncontrado)} />
                         </div>
@@ -58,11 +61,13 @@ const Home = () => {
                         {team.length !== 0 ? <JumboTeam paquete={paquete} /> : null}
                     </div>
                     {
-                        validate ?
-                            !noEncontrado ? <Paginate currentHero={currentHero} pageCount={pageCount} handlePageClick={handlePageClick} /> : <h1>Heroe/s No Encontrado/s</h1> : <h3>Aquí aparecerán tus héroes</h3>
+                        entrada ? 
+                            validate ?
+                                !noEncontrado ? <Paginate currentHero={currentHero} pageCount={pageCount} handlePageClick={handlePageClick} /> : <Jumbotrom title="¡Héroe o Villano no Encontrado!"/> 
+                            : entrada.entrada.length !== 0 ? <div className="text-center"><Spinner color="light" /></div> : <Jumbotrom title="Aquí aparecerán tus búsquedas"/>
+                        : <Jumbotrom title="Aquí aparecerán tus búsquedas"/>
                     }
                 </div>
-                <ModalCard buttonLabel="Modal"/>
             </div>
         </Fragment>
     )
