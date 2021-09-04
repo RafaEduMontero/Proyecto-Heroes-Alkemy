@@ -1,5 +1,7 @@
+//Images
 import info from '../images/superhero1.png';
 import del from '../images/delete.png';
+//Atomics
 import CardFront from "../atomics/cardFront";
 import CardBackTeam from '../atomics/cardBackTeam';
 

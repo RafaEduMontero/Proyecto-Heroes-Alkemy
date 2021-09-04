@@ -1,7 +1,17 @@
-import {Fragment} from 'react';
+import {Fragment, useContext} from 'react';
+//ReactPaginate
 import ReactPaginate from 'react-paginate';
+//Context
+import { HomeContext } from '../context/homeContext';
+//Helpers
+import helperPaginate from '../helpers/helpersPaginate';
 
-const Paginate = ({currentHero,pageCount,handlePageClick}) => {
+const Paginate = () => {
+    const {heroes,currentPage,setCurrentPage} = useContext(HomeContext);
+    const {paginate} = helperPaginate;
+    const helpers = paginate(heroes,currentPage,setCurrentPage)
+    const {currentHero,pageCount,handlePageClick} = helpers;
+
     return (
         <Fragment>
             <div className="row">

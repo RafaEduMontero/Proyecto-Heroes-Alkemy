@@ -1,4 +1,4 @@
-import React from 'react'
+//Reactrap
 import { Container, Jumbotron } from 'reactstrap'
 
 const Jumbotrom = ({title}) => {

@@ -1,10 +1,16 @@
+import React,{ StrictMode } from 'react';
+import HomeProvider from "./context/homeContext";
 import Routes from "./routes/routes";
 import './styles/style.css'
 
 function App() {
 
   return (
-      <Routes/>
+    <StrictMode>
+      <HomeProvider>
+        <Routes />
+      </HomeProvider>
+    </StrictMode>
   );
 }
 

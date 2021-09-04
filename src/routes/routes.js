@@ -1,36 +1,37 @@
+import { useContext, useEffect } from "react";
 import {
-    BrowserRouter as Router,
-    Route,
-    Switch
-  } from "react-router-dom";
-import DetailHero from '../pages/DetailHero';
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from "react-router-dom";
+import { HomeContext } from "../context/homeContext";
 import Home from '../pages/Home';
 import Login from '../pages/Login';
 
-  const Routes = () =>{
-    // //   const [heroes,validate] = useHeroes();
-    // //   console.log(heroes);
-    // const [entrada,setEntrada] = useState('');
-    // const [heroes,setHeroes] = useState([]);
-    // const handler = (e) =>{
-    //     const {name,value} = e.target;
-    //     setEntrada({
-    //         [name] : value.toLowerCase()
-    //     })
-    // }
-    // const {buscarHeroes} = helpers;
+const Routes = () => {
+  const { team, setTeam } = useContext(HomeContext);
 
-    // console.log(entrada)
-    // console.log(heroes)
-      return(
-        <Router>
-          <Switch>
-            <Route exact path="/" component={Login}/>
-            <Route path="/Home" component={Home}/>
-            <Route path="Home/DetailHero/:id" component={DetailHero}/>
-          </Switch>
-        </Router>
-      )
-  }
+  useEffect(() => {
+    let data = localStorage.getItem('team');
+    if (data !== null) {
+      setTeam(JSON.parse(data));
+    } else {
+      setTeam([])
+    }
+  }, []);
 
-  export default Routes;
+  useEffect(() => {
+    localStorage.setItem('team', JSON.stringify(team))
+  }, [team])
+
+  return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Login} />
+        <Route path="/Home" component={Home} />
+      </Switch>
+    </Router>
+  )
+}
+
+export default Routes;

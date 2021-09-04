@@ -1,6 +1,6 @@
-const CardFront = ({url,name}) => {
+const CardFront = ({url,name,i}) => {
     return (
-        <div className="flip-box-front">
+        <div key={i} className="flip-box-front">
             <img className="card-img  w-100 h-100" src={`${url}`} />
             <div className="card-img-overlay d-flex flex-column justify-content-end">
                 <div className="title inner subTitle">
